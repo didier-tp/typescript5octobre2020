@@ -1,4 +1,9 @@
-
+interface IPerson {
+    numero : number;
+    nom:string;
+    //age? : number;
+    prenom? : string
+}
 
 class Personne{
    
