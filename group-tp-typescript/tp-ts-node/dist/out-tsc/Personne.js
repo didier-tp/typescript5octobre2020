@@ -56,8 +56,17 @@ var Employe = /** @class */ (function (_super) {
 var e1 = new Employe(1, "toto", 2500);
 e1.salaire = 3000;
 console.log("Empoye e1 :" + JSON.stringify(e1) + ' de type=' + typeof (e1));
+if (e1 instanceof Employe) {
+    console.log("e1 est de type Employe");
+}
 var p1;
 p1 = new Personne();
+if (p1 instanceof Employe) {
+    console.log("p1 est de type employe");
+}
+else {
+    console.log("p1 n'est pas de type Employe");
+}
 p1.nom = "toto";
 try {
     p1.age = -30;
