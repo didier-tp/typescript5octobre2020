@@ -20,9 +20,17 @@ for(const [index,elt] of t.entries()){
 
 var m = new Map();
 m.set("hiver", "froid , neige");
-console.log(m.get("hiver")); 
+console.log(m.get("hiver"));
+*/ 
 
-function fxabc_with_named_param( { paramX=0 , a=0 , b=0 , c=0 } = { } ){
+interface ParamFxabc {
+    paramX? : number ;
+    a? :number;
+    b?: number;
+    c? : number;
+}
+
+function fxabc_with_named_param( { paramX=0 , a=0 , b=0 , c=0 } : ParamFxabc = { }  ){
     //return ax^2+bx+c
     return a * Math.pow(paramX,2) + b * paramX + c;
     }
@@ -30,4 +38,3 @@ function fxabc_with_named_param( { paramX=0 , a=0 , b=0 , c=0 } = { } ){
     
 let troisFois4 = fxabc_with_named_param( { paramX :4 , b : 3 } );
 console.log("troisFois4="+troisFois4 );//12
-*/

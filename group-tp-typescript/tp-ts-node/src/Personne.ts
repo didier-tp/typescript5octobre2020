@@ -25,11 +25,25 @@ class Personne{
 
 }
 
+class Employe extends Personne {
+    constructor(numero:number=0,
+                nom:string="?",
+                public salaire:number=0){
+        //super(); 
+        super(numero,nom) ;         
+    }
+
+}
+
+var e1 = new Employe(1,"toto",2500);
+e1.salaire=3000;
+console.log("Empoye e1 :" + JSON.stringify(e1) + ' de type=' + typeof(e1));
+
 let p1 : Personne;
 p1 = new Personne();
 p1.nom="toto";
 try {
-p1.age=-30;
+   p1.age=-30;
 }
 catch(e){
     console.log(e)

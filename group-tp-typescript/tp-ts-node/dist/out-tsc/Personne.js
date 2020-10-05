@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var Personne = /** @class */ (function () {
     function Personne(numero, nom, _age) {
         if (numero === void 0) { numero = undefined; }
@@ -26,6 +39,23 @@ var Personne = /** @class */ (function () {
     };
     return Personne;
 }());
+var Employe = /** @class */ (function (_super) {
+    __extends(Employe, _super);
+    function Employe(numero, nom, salaire) {
+        if (numero === void 0) { numero = 0; }
+        if (nom === void 0) { nom = "?"; }
+        if (salaire === void 0) { salaire = 0; }
+        var _this = 
+        //super(); 
+        _super.call(this, numero, nom) || this;
+        _this.salaire = salaire;
+        return _this;
+    }
+    return Employe;
+}(Personne));
+var e1 = new Employe(1, "toto", 2500);
+e1.salaire = 3000;
+console.log("Empoye e1 :" + JSON.stringify(e1) + ' de type=' + typeof (e1));
 var p1;
 p1 = new Personne();
 p1.nom = "toto";

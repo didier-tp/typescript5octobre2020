@@ -33,22 +33,11 @@ finally {
     }
     finally { if (e_1) throw e_1.error; }
 }
-/*
-for(const [index,elt] of t.entries()){
-    console.log(`index=${index} val=${elt}`);
-}
-
-var m = new Map();
-m.set("hiver", "froid , neige");
-console.log(m.get("hiver"));
-
-function fxabc_with_named_param( { paramX=0 , a=0 , b=0 , c=0 } = { } ){
+function fxabc_with_named_param(_a) {
+    var _b = _a === void 0 ? {} : _a, _c = _b.paramX, paramX = _c === void 0 ? 0 : _c, _d = _b.a, a = _d === void 0 ? 0 : _d, _e = _b.b, b = _e === void 0 ? 0 : _e, _f = _b.c, c = _f === void 0 ? 0 : _f;
     //return ax^2+bx+c
-    return a * Math.pow(paramX,2) + b * paramX + c;
-    }
-
-    
-let troisFois4 = fxabc_with_named_param( { paramX :4 , b : 3 } );
-console.log("troisFois4="+troisFois4 );//12
-*/ 
+    return a * Math.pow(paramX, 2) + b * paramX + c;
+}
+var troisFois4 = fxabc_with_named_param({ paramX: 4, b: 3 });
+console.log("troisFois4=" + troisFois4); //12
 //# sourceMappingURL=calcul.js.map
