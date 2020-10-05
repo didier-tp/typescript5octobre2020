@@ -68,3 +68,40 @@ writable : true, enumerable : false, configurable : true});
 Reflect.defineProperty(p2, "age", {value: p2.age ,
     writable : true, enumerable : true, configurable : true});
 console.log(">>>>"+JSON.stringify(p2))
+
+
+
+let chose : any;  // 12 ou "abc" ou ...
+let obj : object  | null; 
+//obj= null; 
+obj = { numero : 2}
+
+//données souvent recupérées via HTTP
+let persJsonString = '{ "numero":2 , "nom" : "titi" , "prenom" : "p" } ';
+let persJs :IPerson = JSON.parse(persJsonString);
+//let persJs :IPerson = <IPerson> ( <any> JSON.parse(persJsonString) );
+//avec castings explicites dans les cas pointus
+
+// persJs = new IPerson(); interdit sur IPerson qui est une interface
+let persJs2 : IPerson = { numero:3  , nom : "Bon" , prenom : "jean"} ;
+
+function  affPerson(p:IPerson):void{
+    console.log("****" + p.nom +  " " + p.numero)
+}
+
+function  affPersonMoinsBien(p:object):void{
+    let pa = <any> p;
+    console.log("****" + pa["nom"] +  " " + pa["numero"])
+}
+
+affPerson(persJs);
+
+let p3 : Personne;
+p3= Object.assign(new Personne() , persJs );
+//Object.assign(target, source) opère une sorte de fusion entre 2 objets javascript
+//ça recopie toutes les sous parties communes de source vers target (.numero , .nom)
+//et ça retourne le résultat
+console.log(p3.age);
+p3.incrementerAge();
+console.log(p3.age);
+

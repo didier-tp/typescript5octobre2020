@@ -30,11 +30,11 @@ interface ParamFxabc {
     c? : number;
 }
 
-function fxabc_with_named_param( { paramX=0 , a=0 , b=0 , c=0 } : ParamFxabc = { }  ){
+function fxabc_with_named_param( { paramX=0 , a=0 , b=0 , c=0 } : ParamFxabc = { }  ) :number {
     //return ax^2+bx+c
     return a * Math.pow(paramX,2) + b * paramX + c;
     }
 
     
-let troisFois4 = fxabc_with_named_param( { paramX :4 , b : 3 } );
+let troisFois4 = fxabc_with_named_param( { paramX :4 , b : 3  } );
 console.log("troisFois4="+troisFois4 );//12
