@@ -10,7 +10,7 @@ let x=addition(5,6);
 
 let t : string[]= ["abc","def","trois"];
 for(let e of t){
-    console.log(e);
+    console.log(e.toUpperCase());
 }
 
 /*
