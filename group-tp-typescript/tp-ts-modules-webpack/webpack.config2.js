@@ -9,7 +9,8 @@ let config = {
   output: {
     path: path.resolve(__dirname, "./dist/build"),
     filename: "./fig-bundle.js",
-    library: 'MyFigModule'
+    library: 'MyFigModule',
+    //libraryTarget:'umd ou iife ou ???'
   },/*
     module: {
         rules: [{

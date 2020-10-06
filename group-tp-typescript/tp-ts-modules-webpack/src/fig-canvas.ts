@@ -52,3 +52,7 @@ var lastYc = undefined;
 		lastXc=xC; lastYc=yC;//store last coord for next line
 		ctx.stroke();
 	};
+
+export default {
+	my_ts_test : my_ts_test
+};

@@ -42,4 +42,7 @@ function log_coords(evt) {
     ctx.stroke();
 }
 ;
+export default {
+    my_ts_test: my_ts_test
+};
 //# sourceMappingURL=fig-canvas.js.map

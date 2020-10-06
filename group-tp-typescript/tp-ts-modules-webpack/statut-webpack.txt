@@ -1,12 +1,12 @@
-Hash: 42d346909a9f63d4ca1b
+Hash: a388f0905c981a716b36
 Version: webpack 4.44.2
-Time: 856ms
-Built at: 2020-10-06 11:51:52
+Time: 635ms
+Built at: 2020-10-06 12:47:00
           Asset      Size  Chunks             Chunk Names
-./fig-bundle.js  3.58 KiB       0  [emitted]  main
+./fig-bundle.js  3.81 KiB       0  [emitted]  main
 Entrypoint main = ./fig-bundle.js
-[0] ./dist/out-tsc/fig-canvas.js + 4 modules 5.46 KiB {0} [built]
-    | ./dist/out-tsc/fig-canvas.js 1.58 KiB [built]
+[0] ./dist/out-tsc/fig-canvas.js + 4 modules 5.51 KiB {0} [built]
+    | ./dist/out-tsc/fig-canvas.js 1.63 KiB [built]
     | ./dist/out-tsc/fig-test.js 878 bytes [built]
     | ./dist/out-tsc/canvas-fig-visitor.js 1.36 KiB [built]
     | ./dist/out-tsc/console-fig-visitor.js 374 bytes [built]
