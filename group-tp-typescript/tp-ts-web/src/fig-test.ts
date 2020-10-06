@@ -2,6 +2,7 @@ import { CanvasVisitor } from "./canvas-fig-visitor.js";
 import { ConsoleJsonVisitor } from "./console-fig-visitor.js";
 import { Circle, Fig2D, Line, Rectangle } from "./fig.js";
 
+
 export function my_ts_test(){
     var tabFig : Fig2D[] = new Array<Fig2D>();
     tabFig.push(new Line(20,20,180,200,"red"));
