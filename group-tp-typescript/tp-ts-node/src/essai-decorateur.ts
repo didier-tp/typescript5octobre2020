@@ -60,16 +60,29 @@ function myLogMethodDecocator(paramMaj:boolean=false) {
   }
 }
 
+function myPerfMethodDecocator() {
 
-/******
- A faire en Tp : coder myPerfMethodDecocator()
- en s'appuyant sur 
-    let hrTimeAvant = process.hrtime();
-    let avant =  hrTimeAvant[0] * 1000000 + hrTimeAvant[1] / 1000 ;
-    ...
-    apres et difference des temps
-*/
-
+  //the decorator (internal):
+  return function (target:any, methodNameAspropertyKey: string, descriptor: PropertyDescriptor) {
+    let originalMethodFunction= descriptor.value;
+    //console.log(">> originalMethodFunction (code)="+originalMethodFunction);
+    
+   
+    descriptor.value = function(...args: any[]) {
+      //for methodDecorator , target = prototype object of current object (ex: Cercle.prototype)
+      //console.log(">> in myLogDecorator, target (current obj) prototype as json string="+JSON.stringify(target));
+      let hrTimeAvant = process.hrtime();
+      let avant =  hrTimeAvant[0] * 1000000 + hrTimeAvant[1] / 1000 ;//Date.now();//window.performance.now();
+      let returnValue = originalMethodFunction.apply(this, args);
+      let hrTimeApres = process.hrtime();
+      let apres =  hrTimeApres[0] * 1000000 + hrTimeApres[1] / 1000 ;//Date.now();//window.performance.now();
+      const params = args.map(arg => JSON.stringify(arg)).join();
+      console.log(`>>myPerfDecocator intercept call of ${methodNameAspropertyKey}. execution time= ${apres-avant} micro-secondes`);
+      return returnValue;
+    }
+    return descriptor;
+  }
+}
 
 //property decorator:
 
@@ -97,15 +110,32 @@ function myLogPropertyDecorator(target: Object, propertyName: string) {
   );
 }
 
-/******
- A faire en Tp : 
- function myMinValueDecocator(minValue:number=0) {
-      return function (target: Object, propertyName: string) {
-        ...
-      }
-    }
- en ne settant que les valeurs acceptable ( >= minValue)
-*/
+
+function myMinValueDecocator(minValue:number=0) {
+   return function (target: Object, propertyName: string) {
+  //target is protype objet of current object
+  let value: any; //will be used in subscoped get / set arrow functions
+  const updateProperty = Object.defineProperty(
+    target,
+    propertyName,
+    {
+        configurable: true,
+        enumerable: true,
+        get: () => {
+              return value;
+        },
+        set: (newValue: number) => {
+            if(newValue>=minValue)
+                value =  newValue ;
+            else {//console.log(`>>myMinValueDecocator: newValue=${newValue} not set for ${propertyName} !!!`)
+                 //value=minValue;
+                 throw `newValue=${newValue} invalid for ${propertyName} !!!`;
+                 }
+        }
+    },
+);
+}
+}
 
 
 //class decorator:
@@ -140,7 +170,7 @@ class Cercle {
   @myLogPropertyDecorator
   public unite:string  = "?";
 
-  //@myMinValueDecocator(0)
+  @myMinValueDecocator(0)
   public rayon :number;
 
   constructor(public xC :number =0, public yC :number =0,
@@ -154,7 +184,7 @@ class Cercle {
   }
 
   @myLogMethodDecocator()
-  //@myPerfMethodDecocator()
+  @myPerfMethodDecocator()
   aire() : number {
     return Math.PI * this.rayon * this.rayon;
   }

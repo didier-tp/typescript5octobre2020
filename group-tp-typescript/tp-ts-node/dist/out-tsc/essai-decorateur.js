@@ -63,14 +63,30 @@ function myLogMethodDecocator(paramMaj) {
         return descriptor;
     };
 }
-/******
- A faire en Tp : coder myPerfMethodDecocator()
- en s'appuyant sur
-    let hrTimeAvant = process.hrtime();
-    let avant =  hrTimeAvant[0] * 1000000 + hrTimeAvant[1] / 1000 ;
-    ...
-    apres et difference des temps
-*/
+function myPerfMethodDecocator() {
+    //the decorator (internal):
+    return function (target, methodNameAspropertyKey, descriptor) {
+        var originalMethodFunction = descriptor.value;
+        //console.log(">> originalMethodFunction (code)="+originalMethodFunction);
+        descriptor.value = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            //for methodDecorator , target = prototype object of current object (ex: Cercle.prototype)
+            //console.log(">> in myLogDecorator, target (current obj) prototype as json string="+JSON.stringify(target));
+            var hrTimeAvant = process.hrtime();
+            var avant = hrTimeAvant[0] * 1000000 + hrTimeAvant[1] / 1000; //Date.now();//window.performance.now();
+            var returnValue = originalMethodFunction.apply(this, args);
+            var hrTimeApres = process.hrtime();
+            var apres = hrTimeApres[0] * 1000000 + hrTimeApres[1] / 1000; //Date.now();//window.performance.now();
+            var params = args.map(function (arg) { return JSON.stringify(arg); }).join();
+            console.log(">>myPerfDecocator intercept call of " + methodNameAspropertyKey + ". execution time= " + (apres - avant) + " micro-secondes");
+            return returnValue;
+        };
+        return descriptor;
+    };
+}
 //property decorator:
 function myLogPropertyDecorator(target, propertyName) {
     //target is protype objet of current object
@@ -91,15 +107,28 @@ function myLogPropertyDecorator(target, propertyName) {
         }
     });
 }
-/******
- A faire en Tp :
- function myMinValueDecocator(minValue:number=0) {
-      return function (target: Object, propertyName: string) {
-        ...
-      }
-    }
- en ne settant que les valeurs acceptable ( >= minValue)
-*/
+function myMinValueDecocator(minValue) {
+    if (minValue === void 0) { minValue = 0; }
+    return function (target, propertyName) {
+        //target is protype objet of current object
+        var value; //will be used in subscoped get / set arrow functions
+        var updateProperty = Object.defineProperty(target, propertyName, {
+            configurable: true,
+            enumerable: true,
+            get: function () {
+                return value;
+            },
+            set: function (newValue) {
+                if (newValue >= minValue)
+                    value = newValue;
+                else { //console.log(`>>myMinValueDecocator: newValue=${newValue} not set for ${propertyName} !!!`)
+                    //value=minValue;
+                    throw "newValue=" + newValue + " invalid for " + propertyName + " !!!";
+                }
+            }
+        });
+    };
+}
 //class decorator:
 function myLogClassDecorator() {
     return function (target) {
@@ -137,7 +166,6 @@ var Cercle = /** @class */ (function () {
     Cercle.prototype.description = function () {
         return "Cercle de centre (" + this.xC + "," + this.yC + ") et de rayon " + this.rayon;
     };
-    //@myPerfMethodDecocator()
     Cercle.prototype.aire = function () {
         return Math.PI * this.rayon * this.rayon;
     };
@@ -154,10 +182,14 @@ var Cercle = /** @class */ (function () {
         myLogPropertyDecorator
     ], Cercle.prototype, "unite", void 0);
     __decorate([
+        myMinValueDecocator(0)
+    ], Cercle.prototype, "rayon", void 0);
+    __decorate([
         myLogMethodDecocator(true)
     ], Cercle.prototype, "description", null);
     __decorate([
-        myLogMethodDecocator()
+        myLogMethodDecocator(),
+        myPerfMethodDecocator()
     ], Cercle.prototype, "aire", null);
     __decorate([
         myLogMethodDecocator()
