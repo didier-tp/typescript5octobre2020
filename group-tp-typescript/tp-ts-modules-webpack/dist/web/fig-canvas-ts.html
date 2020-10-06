@@ -4,10 +4,20 @@
       <style type="text/css">
 
       </style>
+      <script>
+            window.addEventListener("load", function(){
+
+                  document.querySelector('#btnTest2').addEventListener('click',function(){
+                  console.log("test2");
+                  MyFigModule.my_ts_test();
+                  });
+            });
+      </script>
 <body>
     <div id="divDessin">
        <input type='button' value="clear" id="btnClear" />
        <input type='button' value="test" id="btnTest" /> <br/>
+       <input type='button' value="test2" id="btnTest2" /> <br/>
 			 <canvas id="myCanvas" width="500" height="300" style="border:1px solid #000000;">
 			 </canvas>
 			<hr/>

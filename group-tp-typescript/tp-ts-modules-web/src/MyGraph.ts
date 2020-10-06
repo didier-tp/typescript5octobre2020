@@ -1,3 +1,5 @@
+import { Serie } from "./Serie";
+
  
 declare function Chart(...args:any):void;
 
@@ -24,7 +26,7 @@ var myGraphDefaultBorderColors : Array<String>= [
     'rgba(255, 159, 64, 1)'
 ]
 
- class MySimpleGraph {
+ export class MySimpleGraph {
     //chartsMap = Map beetwen idCanvas and chart
     //to destroy old chart before create new one:
     private static chartsMap = new Map();

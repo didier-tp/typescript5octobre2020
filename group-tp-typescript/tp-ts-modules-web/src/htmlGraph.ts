@@ -1,3 +1,5 @@
+import { MySimpleGraph } from "./MyGraph";
+import { Serie } from "./Serie";
 
 
  

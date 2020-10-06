@@ -8,7 +8,8 @@ let config = {
   entry: "./dist/out-tsc/fig-canvas.js",
   output: {
     path: path.resolve(__dirname, "./dist/build"),
-    filename: "./fig-bundle.js"
+    filename: "./fig-bundle.js",
+    library: 'MyFigModule'
   },/*
     module: {
         rules: [{
