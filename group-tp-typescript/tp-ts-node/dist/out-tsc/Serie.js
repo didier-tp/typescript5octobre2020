@@ -1,4 +1,6 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Serie = void 0;
 var Serie = /** @class */ (function () {
     function Serie(label, values) {
         if (label === void 0) { label = "?"; }
@@ -9,6 +11,7 @@ var Serie = /** @class */ (function () {
     Serie.prototype.push = function (val) { this.values.push(val); };
     return Serie;
 }());
+exports.Serie = Serie;
 /*
 class Serie {
     constructor(public label : string ="?",
