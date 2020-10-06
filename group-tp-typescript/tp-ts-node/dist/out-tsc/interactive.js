@@ -62,35 +62,56 @@ var InteractiveComputer = /** @class */ (function () {
     };
     InteractiveComputer.prototype.ask_and_compute_x_plus_y = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var res;
+            var valX, valY, res, e_1;
             return __generator(this, function (_a) {
-                try {
-                    res = 0;
-                    //.... à compléter en Tp
-                    return [2 /*return*/, res];
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, InteractiveComputer.ask_("x")];
+                    case 1:
+                        valX = _a.sent();
+                        this.x = Number(valX);
+                        return [4 /*yield*/, InteractiveComputer.ask_("y")];
+                    case 2:
+                        valY = _a.sent();
+                        this.y = Number(valY);
+                        res = this.x + this.y;
+                        console.log("(x+y)=" + res);
+                        return [2 /*return*/, res];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log(e_1);
+                        throw new Error("xPlusY-error:" + e_1);
+                    case 4: return [2 /*return*/];
                 }
-                catch (e) {
-                    console.log(e);
-                    throw new Error("xPlusY-error:" + e);
-                }
-                return [2 /*return*/];
             });
         });
     };
     InteractiveComputer.prototype.ask_and_compute_x_plus_y_fois_z = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var res;
+            var xPlusY, valZ, res, err_1;
             return __generator(this, function (_a) {
-                try {
-                    res = 0;
-                    //.... à compléter en Tp
-                    process.exit();
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, this.ask_and_compute_x_plus_y()];
+                    case 1:
+                        xPlusY = _a.sent();
+                        return [4 /*yield*/, InteractiveComputer.ask_("z")];
+                    case 2:
+                        valZ = _a.sent();
+                        this.z = Number(valZ);
+                        res = xPlusY * this.z;
+                        console.log("(x+y)*z=" + res);
+                        process.exit();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        err_1 = _a.sent();
+                        console.log(err_1);
+                        process.exit();
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
-                catch (err) {
-                    console.log(err);
-                    process.exit();
-                }
-                return [2 /*return*/];
             });
         });
     };

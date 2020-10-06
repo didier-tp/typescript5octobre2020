@@ -5,7 +5,7 @@
 function log_essai_Circle(){
     console.log("log_essai_Circle ...")
     
-    var c1 : Circle ,c2 : Circle;
+    var c1 :Circle ,c2 : Circle;
     c1 = new Circle();
     c1.cx=12.5;
     c1.cy=45;

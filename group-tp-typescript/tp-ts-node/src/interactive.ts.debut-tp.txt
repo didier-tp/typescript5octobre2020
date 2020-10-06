@@ -28,12 +28,9 @@ export class InteractiveComputer{
 
     async ask_and_compute_x_plus_y() : Promise<number>{
         try {
-            let valX = await InteractiveComputer.ask_("x");
-            this.x=Number(valX); 
-            let valY = await InteractiveComputer.ask_("y");
-            this.y=Number(valY);
-            let res=this.x+this.y ;
-            console.log("(x+y)=" +res);
+            //.... à compléter en Tp
+            let res=  0; //temporairement
+            //.... à compléter en Tp
             return res;
         }catch(e) {
             console.log(e);
@@ -43,11 +40,9 @@ export class InteractiveComputer{
 
     async ask_and_compute_x_plus_y_fois_z(){
         try {
-            let xPlusY = await this.ask_and_compute_x_plus_y();
-            let valZ = await InteractiveComputer.ask_("z");
-            this.z=Number(valZ); 
-            let res=xPlusY*this.z ;
-            console.log("(x+y)*z=" +res);
+            //.... à compléter en Tp
+             let res=  0;//temporairement
+            //.... à compléter en Tp
             process.exit();
         }
         catch(err) {
@@ -55,7 +50,7 @@ export class InteractiveComputer{
             process.exit();
         }
     }
-} 
+}
 
 //petit test:
 let interactiveComputer :InteractiveComputer = new InteractiveComputer();
