@@ -11,3 +11,5 @@ Ce projet exemple comporte 2 parties bien distinctes:
   cd .../dist (là où est index.html)
   et url http://localhost:3000
   suivre lien fig visitor et cliquer sur test .
+
+---
